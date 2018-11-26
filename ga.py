@@ -4,7 +4,7 @@ random.seed()
 
 
 class geneticAlgorithm:
-    def __init__(self, l, p, objective_function):
+    def __init__(self, l, p, objective_function, looking_for):
         self.of = objective_function
         self.total_fitness = 0
         self.l = l
@@ -14,14 +14,18 @@ class geneticAlgorithm:
         self.mutation_rate = 1000
         self.mutations = 0
         self.generation = 0
+		self.looking_for_maximum = looking_for  #True - looking for global max, False - global min
+        self.x = None   #x of max/min f(x)
+        self.y = None   #f(x) which is a local max/min. 
 
     def generatePopulation(self):
         self.generation = 0
-        for _ in range(self.p):
+        for i in range(self.p):
             s = []
             for _ in range(self.l):
                 s.append(str(random.randrange(0,2)))
             self.addString(s)
+			self.updateXY(self.population[i])
 
     def addString(self, string):
         c = child(string, self.of)
@@ -70,7 +74,8 @@ class geneticAlgorithm:
         self.total_fitness = 0
         for s in self.population:
             self.total_fitness += s.value
-
+			self.updateXY(s)
+			
     def displayPopStats(self, show_ga_stats):
         print("Generation:", self.generation)
         if show_ga_stats:
@@ -81,7 +86,24 @@ class geneticAlgorithm:
         print("Average Fitness:", self.total_fitness / self.p)
         print("################################################")
         
-
+	# updates current min/max x and f(x)  
+    def updateXY(self, s): 
+        if (self.x == None or self.y == None):
+            self.x = s.string
+            self.y = s.value
+        else:
+            if (self.looking_for_maximum  and s.value > self.y):
+                self.y = s.value
+                self.x = s.string   #will need to change to the actual dec value
+            elif (not self.looking_for_maximum and s.value < self.y):
+                self.y = s.value
+                self.x = s.string   #will need to change to the actual dec value)
+    
+	#returns current min/max x and f(x)  
+	#TODO convert x from string
+    def getResult(self):
+        return self.x, self.y
+	
 class child:
     def __init__(self, string, objective_function):
         self.string = string
@@ -126,7 +148,8 @@ def dejong_of(s):
     return fitness
 
 def main():
-    ga = geneticAlgorithm(30, 50, dejong_of)
+	looking_for_max = True # maximizing function for this test
+    ga = geneticAlgorithm(30, 50, dejong_of, looking_for_max)
     ga.generatePopulation()
     print(ga.total_fitness, ga.population)
     for _ in range(1000):
@@ -135,5 +158,5 @@ def main():
         ga.mutate()
         ga.updateFitness()
         ga.displayPopStats(False)
-
+	print(ga.getResult())
 main()
