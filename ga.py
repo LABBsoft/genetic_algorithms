@@ -14,9 +14,11 @@ class geneticAlgorithm:
         self.mutation_rate = 1000
         self.mutations = 0
         self.generation = 0
-		self.looking_for_maximum = looking_for  #True - looking for global max, False - global min
-        self.x = None   #x of max/min f(x)
-        self.y = None   #f(x) which is a local max/min. 
+        self.fitness_history = 0 #switch to check if min/max value was updated: 0 - no change; 1 - changed
+        self.looking_for_maximum = looking_for  #True - looking for global max, False - global min
+        self.x = None   #initial x of max/min f(x). currently is the string value. needs to be changed to dec before displaying
+        self.y = None   #initial f(x) which is a local max/min. 
+        self.elite = None #string of best result of cur gen. Added to next gen
 
     def generatePopulation(self):
         self.generation = 0
@@ -25,7 +27,8 @@ class geneticAlgorithm:
             for _ in range(self.l):
                 s.append(str(random.randrange(0,2)))
             self.addString(s)
-			self.updateXY(self.population[i])
+            self.updateXY(self.population[i])
+        self.elite = self.x     
 
     def addString(self, string):
         c = child(string, self.of)
@@ -58,6 +61,10 @@ class geneticAlgorithm:
             self.next_gen.append(c2)
         self.population = self.next_gen
         self.next_gen = []
+        # Next lines take out last mutated string and put best result of previous generation instead.
+        c = self.population.pop() ##
+        self.population.append(child(self.elite, self.of)) ##
+     
 
     def mutate(self):
         mutations = self.l * self.p / self.mutation_rate
@@ -72,9 +79,19 @@ class geneticAlgorithm:
 
     def updateFitness(self):
         self.total_fitness = 0
+        local_x = self.population[0].string
+        local_y = self.population[0].value
         for s in self.population:
             self.total_fitness += s.value
-			self.updateXY(s)
+            self.updateXY(s)
+            ## Searches for "elite" of current population 
+            if (self.looking_for_maximum and s.value > local_y):
+                local_x = s.string
+                local_y = s.value
+            elif (not self.looking_for_maximum and s.value < local_y):
+                local_x = s.string
+                local_y = s.value
+        self.elite = local_x
 			
     def displayPopStats(self, show_ga_stats):
         print("Generation:", self.generation)
@@ -86,23 +103,37 @@ class geneticAlgorithm:
         print("Average Fitness:", self.total_fitness / self.p)
         print("################################################")
         
-	# updates current min/max x and f(x)  
+    # updates current min/max x and f(x)  
     def updateXY(self, s): 
         if (self.x == None or self.y == None):
             self.x = s.string
             self.y = s.value
+            self.fitness_history = 1
         else:
             if (self.looking_for_maximum  and s.value > self.y):
                 self.y = s.value
-                self.x = s.string   #will need to change to the actual dec value
+                self.x = s.string
+                self.fitness_history = 1
             elif (not self.looking_for_maximum and s.value < self.y):
                 self.y = s.value
-                self.x = s.string   #will need to change to the actual dec value)
+                self.x = s.string
+                self.fitness_history = 1
     
-	#returns current min/max x and f(x)  
-	#TODO convert x from string
+    #returns current min/max x and f(x)  
+    #TODO convert x from string
     def getResult(self):
         return self.x, self.y
+    
+    def resetFitness(self):
+        self.fitness_history = 0
+        
+    #returns True if stalled
+    def checkStall(self):
+        if (self.fitness_history == 0):
+            #print("stalled")
+            return True
+        else:
+            return False
 	
 class child:
     def __init__(self, string, objective_function):
@@ -148,15 +179,40 @@ def dejong_of(s):
     return fitness
 
 def main():
-	looking_for_max = True # maximizing function for this test
-    ga = geneticAlgorithm(30, 50, dejong_of, looking_for_max)
-    ga.generatePopulation()
-    print(ga.total_fitness, ga.population)
-    for _ in range(1000):
-        ga.reproduce()
-        ga.crossover()
-        ga.mutate()
-        ga.updateFitness()
-        ga.displayPopStats(False)
-	print(ga.getResult())
+    iterations = []
+    max_y = 0
+    max_x = 0
+    stall_check_frequency = 100
+    generations_limit = 5000
+    looking_for_max = True # maximizing function for this test
+    for _ in range(10):
+        ga = geneticAlgorithm(30, 50, dejong_of, looking_for_max)
+        ga.generatePopulation()
+        print(ga.total_fitness, ga.population)
+        iterations_counter = 0
+        stall = False
+        while (iterations_counter < generations_limit and not stall):
+            ga.reproduce()
+            ga.crossover()
+            ga.mutate()
+            ga.updateFitness()
+            #ga.displayPopStats(False)
+            if ((iterations_counter+1) % stall_check_frequency == 0):
+                stall = ga.checkStall()
+                ga.resetFitness()    
+      
+            iterations_counter += 1
+            print(ga.total_fitness, ga.population)
+            
+        x, y = ga.getResult()
+        print("Result {} corresponds to {}".format(y, x))
+        print("Did ",iterations_counter, " iterations")
+        iterations.append(y)
+        if y >max_y:
+            max_x = x
+            max_y = y
+    print(iterations)
+    print("Top result: ")
+    print (max_y, max_x)
+   
 main()
