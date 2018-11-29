@@ -1,14 +1,16 @@
 import random
 random.seed()
-
+nov = 0
+noterms = 0
+Lines = []
 
 
 class geneticAlgorithm:
     def __init__(self, l, p, objective_function, looking_for):
         self.of = objective_function
         self.total_fitness = 0
-        self.l = l
-        self.p = p
+        self.l = l #length of genome
+        self.p = p # size of the population
         self.population = []
         self.next_gen = []
         self.mutation_rate = 1000
@@ -162,6 +164,15 @@ def objective_function(s):
             count += 2 ** i
     return count
 
+def dynamic_of(s):
+    a = [0]
+    for char in s:
+        if "0" in char:
+            a.append(-1)
+        else:
+            a.append(int(char)) 
+    return eval(Lines[1])
+
 # Use string size divisible by 10
 # Max value 
 def dejong_of(s):
@@ -178,6 +189,26 @@ def dejong_of(s):
     fitness += cur * cur
     return fitness
 
+def useWhich():
+    of = (0,0,None,True)
+    userRequest = input("Use which Objective Function? (dejong: d, from file: f): ")
+    if "d" in userRequest:
+        of = (30,50,dejong_of,False)
+    elif "f" in userRequest:
+        userRequest = input("How many values? (10 - 27): ")
+        line = (int(userRequest) - 10) * 2
+        print(line)
+        file = open("given_of.txt", "r")
+        file.seek(0)
+        i = 0
+        while i < line:
+            file.readline()
+            i+=1
+        Lines.append(file.readline())
+        Lines.append(file.readline()[:-2])
+        of = (int(userRequest), 50, dynamic_of, False)
+    return of
+
 def main():
     iterations = []
     max_y = 0
@@ -185,10 +216,12 @@ def main():
     stall_check_frequency = 100
     generations_limit = 5000
     looking_for_max = True # maximizing function for this test
+    of = useWhich()
+    print(of)
     for _ in range(10):
-        ga = geneticAlgorithm(30, 50, dejong_of, looking_for_max)
+        ga = geneticAlgorithm(*of)
         ga.generatePopulation()
-        print(ga.total_fitness, ga.population)
+        ga.displayPopStats(True)
         iterations_counter = 0
         stall = False
         while (iterations_counter < generations_limit and not stall):
@@ -202,17 +235,20 @@ def main():
                 ga.resetFitness()    
       
             iterations_counter += 1
-            print(ga.total_fitness, ga.population)
+            ga.displayPopStats(True)
             
         x, y = ga.getResult()
         print("Result {} corresponds to {}".format(y, x))
         print("Did ",iterations_counter, " iterations")
         iterations.append(y)
-        if y >max_y:
+        if y >max_y and of[3]:
+            max_x = x
+            max_y = y
+        elif y < max_y and not of[3]:
             max_x = x
             max_y = y
     print(iterations)
     print("Top result: ")
     print (max_y, max_x)
-   
+    
 main()
