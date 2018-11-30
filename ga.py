@@ -1,9 +1,9 @@
 import random
+import struct
+from of import useWhich
 random.seed()
 nov = 0
 noterms = 0
-Lines = []
-
 
 class geneticAlgorithm:
     def __init__(self, l, p, objective_function, looking_for):
@@ -157,57 +157,6 @@ class child:
         self.string[item] = value
         self.value = self.objective_function(self.string)
 
-def objective_function(s):
-    count = 0
-    for i, c in enumerate(s):
-        if c == '1':
-            count += 2 ** i
-    return count
-
-def dynamic_of(s):
-    a = [0]
-    for char in s:
-        if "0" in char:
-            a.append(-1)
-        else:
-            a.append(int(char)) 
-    return eval(Lines[1])
-
-# Use string size divisible by 10
-# Max value 
-def dejong_of(s):
-    fitness = 0
-    for i, c in enumerate(s):
-        if i % 10 == 0:
-            if i != 0:
-                cur /= 100
-                fitness += cur * cur
-            cur = -512
-        if c == '1':
-            cur += 2 ** (i % 10)
-    cur /= 100
-    fitness += cur * cur
-    return fitness
-
-def useWhich():
-    of = (0,0,None,True)
-    userRequest = input("Use which Objective Function? (dejong: d, from file: f): ")
-    if "d" in userRequest:
-        of = (30,50,dejong_of,False)
-    elif "f" in userRequest:
-        userRequest = input("How many values? (10 - 27): ")
-        line = (int(userRequest) - 10) * 2
-        print(line)
-        file = open("given_of.txt", "r")
-        file.seek(0)
-        i = 0
-        while i < line:
-            file.readline()
-            i+=1
-        Lines.append(file.readline())
-        Lines.append(file.readline()[:-2])
-        of = (int(userRequest), 50, dynamic_of, False)
-    return of
 
 def main():
     iterations = []
@@ -238,7 +187,10 @@ def main():
             ga.displayPopStats(True)
             
         x, y = ga.getResult()
-        print("Result {} corresponds to {}".format(y, x))
+        print("Result {} corresponds to: ".format(y), end="")
+        for i in x:
+            print("{}".format(i),end = "")
+        print()
         print("Did ",iterations_counter, " iterations")
         iterations.append(y)
         if y >max_y and of[3]:
