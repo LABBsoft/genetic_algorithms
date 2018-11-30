@@ -160,7 +160,7 @@ class child:
 
 def main():
     iterations = []
-    max_y = 0
+    max_y = 1000
     max_x = 0
     stall_check_frequency = 100
     generations_limit = 5000

@@ -1,4 +1,5 @@
 import struct
+from charts import *
 
 Lines = []
 
@@ -19,9 +20,9 @@ def bitToFloat(bits):
     return f
 
 def rosen_of(s):
-    x = bitToFloat(s[:32])
-    y = bitToFloat(s[32:])
-    ans = 100 * pow(pow(y[0] - x[0],2),2) + pow(x[0]-1, 2)
+    x = bitToFloat(s[:32])[0]
+    y = bitToFloat(s[32:])[0]
+    ans = abs(100 * pow(y - pow(x,2),2) + pow(x-1, 2))
     return ans
 
 def objective_function(s):
@@ -67,6 +68,7 @@ from file: f
         of = (30,50,dejong_of,False)
     elif "r" in userRequest:
         of = (64,50,rosen_of, False)
+        plotRosen()
     elif "f" in userRequest:
         userRequest = input("How many values? (10 - 27): ")
         line = (int(userRequest) - 10) * 2
