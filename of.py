@@ -19,10 +19,30 @@ def bitToFloat(bits):
     f = struct.unpack('f',bytes(byte))
     return f
 
+def bitConvH(bits):
+
+    n = len(bits)
+    res_t = 0;
+    for i in range(1, len(bits)):
+        if bits[i] == '1':
+            res_t += 2**(n-i-1)
+    if bits[0] == '1':
+        res_t = res_t - (1 << len(bits)-1)
+    
+    res = res_t/1000000
+    return res  
+
+
 def rosen_of(s):
     x = bitToFloat(s[:32])[0]
     y = bitToFloat(s[32:])[0]
     ans = abs(100 * pow(y - pow(x,2),2) + pow(x-1, 2))
+    return ans
+
+def himmel_of(s):
+    x = bitConvH(s[:24])
+    y = bitConvH(s[24:])
+    ans = pow(pow(x, 2)+y-11, 2) + pow(x+pow(y,2)-7,2)
     return ans
 
 def objective_function(s):
@@ -61,7 +81,8 @@ def useWhich():
     of = (0,0,None,True)
     userRequest = input("""Use which Objective Function?
 dejong: d 
-rosenbrock: r 
+rosenbrock: r
+himmelblau: h
 from file: f
 -> """)
     if "d" in userRequest:
@@ -69,6 +90,8 @@ from file: f
     elif "r" in userRequest:
         of = (64,50,rosen_of, False)
         plotRosen()
+    elif "h" in userRequest:
+        of = (48,50,himmel_of, False)
     elif "f" in userRequest:
         userRequest = input("How many values? (10 - 27): ")
         line = (int(userRequest) - 10) * 2

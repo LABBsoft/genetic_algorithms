@@ -41,7 +41,10 @@ class geneticAlgorithm:
         self.generation += 1
         self.next_gen = []
         for _ in range(self.p):
-            parent = random.random() * self.total_fitness
+            if (self.looking_for_maximum or self.total_fitness == 0):
+                parent = random.random() *(self.total_fitness)
+            else:
+                parent = random.random() *(1/self.total_fitness)
             for seed in self.population:
                 parent -= seed.value
                 if parent < 0:
