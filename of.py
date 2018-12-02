@@ -1,5 +1,5 @@
 import struct
-from charts import *
+#from charts import *
 
 Lines = []
 
@@ -37,13 +37,13 @@ def rosen_of(s):
     x = bitToFloat(s[:32])[0]
     y = bitToFloat(s[32:])[0]
     ans = abs(100 * pow(y - pow(x,2),2) + pow(x-1, 2))
-    return ans
+    return ans, x, y
 
 def himmel_of(s):
     x = bitConvH(s[:24])
     y = bitConvH(s[24:])
     ans = pow(pow(x, 2)+y-11, 2) + pow(x+pow(y,2)-7,2)
-    return ans
+    return ans, x,y
 
 def objective_function(s):
     count = 0
@@ -59,7 +59,7 @@ def dynamic_of(s):
             a.append(-1)
         else:
             a.append(int(char)) 
-    return eval(Lines[1])
+    return eval(Lines[1]), None, None
 
 # Use string size divisible by 10
 # Max value 
@@ -75,7 +75,7 @@ def dejong_of(s):
             cur += 2 ** (i % 10)
     cur /= 100
     fitness += cur * cur
-    return fitness
+    return fitness, None, None
 
 def useWhich():
     of = (0,0,None,True)
@@ -89,7 +89,7 @@ from file: f
         of = (30,50,dejong_of,False)
     elif "r" in userRequest:
         of = (64,50,rosen_of, False)
-        plotRosen()
+        #plotRosen()
     elif "h" in userRequest:
         of = (48,50,himmel_of, False)
     elif "f" in userRequest:
