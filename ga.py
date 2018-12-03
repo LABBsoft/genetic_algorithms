@@ -18,8 +18,7 @@ class geneticAlgorithm:
         self.generation = 0
         self.fitness_history = 0 #switch to check if min/max value was updated: 0 - no change; 1 - changed
         self.looking_for_maximum = looking_for  #True - looking for global max, False - global min
-        self.x = None   #initial x of max/min f(x). currently is the string value. needs to be changed to dec before displaying
-        self.y = None   #initial f(x) which is a local max/min. 
+        self.top = None   #child which is a local max/min. 
         self.elite = None #string of best result of cur gen. Added to next gen
 
     def generatePopulation(self):
@@ -30,7 +29,8 @@ class geneticAlgorithm:
                 s.append(str(random.randrange(0,2)))
             self.addString(s)
             self.updateXY(self.population[i])
-        self.elite = self.x     
+        #if self.top.string != None:
+        self.elite = self.top.string     
 
     def addString(self, string):
         c = child(string, self.of)
@@ -110,24 +110,21 @@ class geneticAlgorithm:
         
     # updates current min/max x and f(x)  
     def updateXY(self, s): 
-        if (self.x == None or self.y == None):
-            self.x = s.string
-            self.y = s.value
-            self.fitness_history = 1
+        if (self.top == None ):
+            self.top = s
+            #self.fitness_history = 1
         else:
-            if (self.looking_for_maximum  and s.value > self.y):
-                self.y = s.value
-                self.x = s.string
+            if (self.looking_for_maximum  and s.value > self.top.value):
+                self.top = s
                 self.fitness_history = 1
-            elif (not self.looking_for_maximum and s.value < self.y):
-                self.y = s.value
-                self.x = s.string
+            elif (not self.looking_for_maximum and s.value < self.top.value):
+                self.top = s
                 self.fitness_history = 1
-    
+     
     #returns current min/max x and f(x)  
     #TODO convert x from string
     def getResult(self):
-        return self.x, self.y
+        return self.top.value, self.top.decX, self.top.decY, self.top.string
     
     def resetFitness(self):
         self.fitness_history = 0
@@ -144,11 +141,11 @@ class child:
     def __init__(self, string, objective_function):
         self.string = string
         self.objective_function = objective_function
-        self.value = self.objective_function(string)
+        self.value, self.decX, self.decY = self.objective_function(string)
 
     def updateString(self, string):
         self.string = string
-        self.value = self.objective_function(string)
+        self.value, self.decX, self.decY = self.objective_function(string)
 
     def __str__(self):
         return "(" + ''.join(self.string) + ", " + str(self.value) + ")"
@@ -158,14 +155,15 @@ class child:
 
     def __setitem__(self, item, value):
         self.string[item] = value
-        self.value = self.objective_function(self.string)
+        self.value, self.decX, self.decY = self.objective_function(self.string)
 
 
 def main():
     iterations = []
-    max_y = 1000
-    max_x = 0
-    stall_check_frequency = 100
+    max_f = 1000
+    max_x = None
+    max_x = None
+    stall_check_frequency = 1000
     generations_limit = 5000
     looking_for_max = True # maximizing function for this test
     of = useWhich()
@@ -187,23 +185,27 @@ def main():
                 ga.resetFitness()    
       
             iterations_counter += 1
-            ga.displayPopStats(True)
+            #ga.displayPopStats(True)
             
-        x, y = ga.getResult()
-        print("Result {} corresponds to: ".format(y), end="")
-        for i in x:
-            print("{}".format(i),end = "")
-        print()
+        f, x, y, s = ga.getResult()
+        print("Result {} corresponds to: x = {} y = {} s = {}".format(f, x, y, s))
         print("Did ",iterations_counter, " iterations")
-        iterations.append(y)
-        if y >max_y and of[3]:
+        iterations.append(f)
+        if f >max_f and of[3]:
+            max_f = f
             max_x = x
             max_y = y
-        elif y < max_y and not of[3]:
+            max_s = s
+        elif f < max_f and not of[3]:
+            max_f = f
             max_x = x
             max_y = y
+            max_s = s
     print(iterations)
     print("Top result: ")
-    print (max_y, max_x)
+    if (max_x != None):
+        print (max_f, max_y, max_x)
+    else:
+        print(max_f, max_s)
     
 main()
