@@ -1,6 +1,7 @@
 import struct
+from charts import plotRosen, plotDejong
 #from charts import *
-
+heatData = [[0 for _ in range(-10,10)] for _ in range(-10,10)]
 Lines = []
 
 def bitToFloat(bits):
@@ -34,9 +35,14 @@ def bitConvH(bits):
 
 
 def rosen_of(s):
+    global heatData
     x = bitToFloat(s[:32])[0]
     y = bitToFloat(s[32:])[0]
     ans = abs(100 * pow(y - pow(x,2),2) + pow(x-1, 2))
+    x = round(x)
+    y = round(y)
+    if x > -10 and x < 10 and y > -10 and y < 10:
+        heatData[round(x) + 10][round(y) + 10] += 1
     return ans, x, y
 
 def himmel_of(s):
@@ -87,9 +93,10 @@ from file: f
 -> """)
     if "d" in userRequest:
         of = (30,50,dejong_of,False)
+        plotDejong()
     elif "r" in userRequest:
         of = (64,50,rosen_of, False)
-        #plotRosen()
+        plotRosen()
     elif "h" in userRequest:
         of = (48,50,himmel_of, False)
     elif "f" in userRequest:

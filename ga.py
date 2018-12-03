@@ -2,6 +2,7 @@ import random
 import struct
 from of import useWhich
 random.seed()
+heatData = []
 nov = 0
 noterms = 0
 
