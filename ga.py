@@ -125,7 +125,7 @@ class geneticAlgorithm:
     #returns current min/max x and f(x)  
     #TODO convert x from string
     def getResult(self):
-        return self.top.value, self.top.decX, self.top.decY, self.top.string
+        return self.top.value, self.top.vals, self.top.string
     
     def resetFitness(self):
         self.fitness_history = 0
@@ -142,11 +142,11 @@ class child:
     def __init__(self, string, objective_function):
         self.string = string
         self.objective_function = objective_function
-        self.value, self.decX, self.decY = self.objective_function(string)
+        self.value, self.vals = self.objective_function(string)
 
     def updateString(self, string):
         self.string = string
-        self.value, self.decX, self.decY = self.objective_function(string)
+        self.value, self.vals = self.objective_function(string)
 
     def __str__(self):
         return "(" + ''.join(self.string) + ", " + str(self.value) + ")"
@@ -156,7 +156,7 @@ class child:
 
     def __setitem__(self, item, value):
         self.string[item] = value
-        self.value, self.decX, self.decY = self.objective_function(self.string)
+        self.value, self.vals = self.objective_function(self.string)
 
 
 def main():
@@ -188,24 +188,22 @@ def main():
             iterations_counter += 1
             #ga.displayPopStats(True)
             
-        f, x, y, s = ga.getResult()
-        print("Result {} corresponds to: x = {} y = {} s = {}".format(f, x, y, s))
+        f, x, s = ga.getResult()
+        print("Result {} corresponds to: x = {} s = {}".format(f, x, s))
         print("Did ",iterations_counter, " iterations")
         iterations.append(f)
         if f >max_f and of[3]:
             max_f = f
             max_x = x
-            max_y = y
             max_s = s
         elif f < max_f and not of[3]:
             max_f = f
             max_x = x
-            max_y = y
             max_s = s
     print(iterations)
     print("Top result: ")
     if (max_x != None):
-        print (max_f, max_y, max_x)
+        print (max_f, max_x)
     else:
         print(max_f, max_s)
     
