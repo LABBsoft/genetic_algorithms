@@ -42,10 +42,7 @@ class geneticAlgorithm:
         self.generation += 1
         self.next_gen = []
         for _ in range(self.p):
-            if (self.looking_for_maximum or self.total_fitness == 0):
-                parent = random.random() *(self.total_fitness)
-            else:
-                parent = random.random() *(1/self.total_fitness)
+            parent = random.random() *(self.total_fitness)
             for seed in self.population:
                 parent -= seed.value
                 if parent < 0:
@@ -91,10 +88,7 @@ class geneticAlgorithm:
             self.total_fitness += s.value
             self.updateXY(s)
             ## Searches for "elite" of current population 
-            if (self.looking_for_maximum and s.value > local_y):
-                local_x = s.string
-                local_y = s.value
-            elif (not self.looking_for_maximum and s.value < local_y):
+            if s.value < local_y:
                 local_x = s.string
                 local_y = s.value
         self.elite = local_x
@@ -115,10 +109,7 @@ class geneticAlgorithm:
             self.top = s
             #self.fitness_history = 1
         else:
-            if (self.looking_for_maximum  and s.value > self.top.value):
-                self.top = s
-                self.fitness_history = 1
-            elif (not self.looking_for_maximum and s.value < self.top.value):
+            if s.value < self.top.value:
                 self.top = s
                 self.fitness_history = 1
      
@@ -164,12 +155,12 @@ def main():
     max_f = 1000
     max_x = None
     max_x = None
-    stall_check_frequency = 1000
-    generations_limit = 5000
+    stall_check_frequency = 100
+    generations_limit = 500
     looking_for_max = True # maximizing function for this test
     of = useWhich()
     print(of)
-    for _ in range(10):
+    for _ in range(1):
         ga = geneticAlgorithm(*of)
         ga.generatePopulation()
         ga.displayPopStats(True)
@@ -180,14 +171,15 @@ def main():
             ga.crossover()
             ga.mutate()
             ga.updateFitness()
-            #ga.displayPopStats(False)
+            # ga.displayPopStats(False)
             if ((iterations_counter+1) % stall_check_frequency == 0):
                 stall = ga.checkStall()
                 ga.resetFitness()    
       
             iterations_counter += 1
-            #ga.displayPopStats(True)
+            # ga.displayPopStats(True)
             
+        ga.displayPopStats(True)
         f, x, s = ga.getResult()
         print("Result {} corresponds to: x = {} s = {}".format(f, x, s))
         print("Did ",iterations_counter, " iterations")

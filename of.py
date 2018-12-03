@@ -3,6 +3,26 @@ from charts import plotRosen, plotDejong
 #from charts import *
 heatData = [[0 for _ in range(-10,10)] for _ in range(-10,10)]
 Lines = []
+MAXIMUMS = {
+10: 45,
+11: 55,
+12: 66,
+13: 78,
+14: 91,
+15: 105,
+16: 120,
+17: 136,
+18: 153,
+19: 171,
+20: 190,
+21: 210,
+22: 231,
+23: 253,
+24: 276,
+25: 300,
+26: 325,
+27: 351
+}
 
 def bitToFloat(bits):
     if bits[1:9] == ['1','1','1','1','1','1','1','1']:
@@ -64,8 +84,9 @@ def dynamic_of(s):
         if "0" in char:
             a.append(-1)
         else:
-            a.append(int(char)) 
-    return eval(Lines[1]), None, None
+            a.append(int(char))
+    out = MAXIMUMS[len(s)] - eval(Lines[1])
+    return out, None
 
 # Use string size divisible by 10
 # Max value 
