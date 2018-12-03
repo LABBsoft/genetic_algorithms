@@ -65,17 +65,20 @@ def dynamic_of(s):
 # Max value 
 def dejong_of(s):
     fitness = 0
+    x = []
     for i, c in enumerate(s):
         if i % 10 == 0:
             if i != 0:
                 cur /= 100
+                x.append(cur)
                 fitness += cur * cur
             cur = -512
         if c == '1':
             cur += 2 ** (i % 10)
     cur /= 100
+    x.append(cur)
     fitness += cur * cur
-    return fitness, None, None
+    return fitness, x, None
 
 def useWhich():
     of = (0,0,None,True)
