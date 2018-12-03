@@ -1,4 +1,5 @@
 import struct
+import multiprocessing
 from charts import *
 
 Lines = []
@@ -68,7 +69,8 @@ from file: f
         of = (30,50,dejong_of,False)
     elif "r" in userRequest:
         of = (64,50,rosen_of, False)
-        plotRosen()
+        p = multiprocessing.Process(target=plotRosen, args=())
+        p.start()
     elif "f" in userRequest:
         userRequest = input("How many values? (10 - 27): ")
         line = (int(userRequest) - 10) * 2

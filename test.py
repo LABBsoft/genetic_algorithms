@@ -14,10 +14,9 @@ def bitToFloat(bits):
     print(byte)
     f = struct.unpack('f',bytes(byte))
     return f
-"""
+
 bits = []
 for i in range(32):
     bits.append(str(random.randint(0,1)))
 f = bitToFloat(bits)
 print(f)
-"""
