@@ -38,13 +38,13 @@ class geneticAlgorithm:
         self.population.append(c)
         self.total_fitness += c.value
 
-    def reproduce(self):
+    def reproduce2(self):
         self.generation += 1
         self.next_gen = []
         for _ in range(self.p):
-            parent = random.random() *(self.total_fitness)
+            parent = random.random() *(self.total_fitness )
             for seed in self.population:
-                parent -= seed.value
+                parent -= (seed.value)
                 if parent < 0:
                     c = child(seed.string, self.of)
                     self.next_gen.append(c)
@@ -52,6 +52,31 @@ class geneticAlgorithm:
         self.population = self.next_gen
         self.next_gen = []
     
+    def reproduce(self):
+        self.generation += 1
+        self.next_gen = []
+        for _ in range(self.p):
+            roulette = []
+            p_cumul = 0
+            for member in self.population:
+                p = (self.total_fitness - member.value) / self.total_fitness
+                p_cumul += p
+                roulette.append(p_cumul)
+            selector = random.uniform(0.00000, 1.00000)
+            if roulette[self.p-1] < selector:
+                c = child(self.population[self.p-1].string, self.of)
+                self.next_gen.append(c)
+            else:
+                for i in range(0, self.p):
+                    if roulette[i] > selector:
+                        c = child(self.population[i].string, self.of)
+                        self.next_gen.append(c)
+                        break
+
+			
+		
+ 
+	
     def crossover(self):
         self.next_gen = []
         for _ in range(self.p // 2):
