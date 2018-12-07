@@ -41,6 +41,7 @@ class geneticAlgorithm:
     def reproduce2(self):
         self.generation += 1
         self.next_gen = []
+  
         for _ in range(self.p):
             parent = random.random() *(self.total_fitness )
             for seed in self.population:
@@ -55,19 +56,36 @@ class geneticAlgorithm:
     def reproduce(self):
         self.generation += 1
         self.next_gen = []
+        max_val = self.population[0].value
+        for member in self.population:
+            if member.value > max_val:
+                max_val = member.value
+
         for _ in range(self.p):
+            temp = []
             roulette = []
+            f_cumul = 0
             p_cumul = 0
             for member in self.population:
-                p = (self.total_fitness - member.value) / self.total_fitness
+                f_new = (max_val - member.value)
+                temp.append(f_new)
+                f_cumul += f_new
+                #roulette.append(p_cumul)
+                #print(f_new)
+            for member in temp:
+                if (f_cumul == 0): p = 1
+                else: p = member/f_cumul
+                #p = member/f_cumul 
                 p_cumul += p
-                roulette.append(p_cumul)
+                roulette.append(p_cumul) 
+
             selector = random.uniform(0.00000, 1.00000)
             if roulette[self.p-1] < selector:
                 c = child(self.population[self.p-1].string, self.of)
                 self.next_gen.append(c)
+
             else:
-                for i in range(0, self.p):
+                for i in range(1, self.p):
                     if roulette[i] > selector:
                         c = child(self.population[i].string, self.of)
                         self.next_gen.append(c)
@@ -182,7 +200,7 @@ def main():
     max_x = None
     max_x = None
     stall_check_frequency = 100
-    generations_limit = 500
+    generations_limit = 5000
     looking_for_max = True # maximizing function for this test
     of = useWhich()
     print(of)
