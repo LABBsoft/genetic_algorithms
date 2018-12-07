@@ -72,7 +72,8 @@ class geneticAlgorithm:
                         c = child(self.population[i].string, self.of)
                         self.next_gen.append(c)
                         break
-
+        self.population = self.next_gen
+        self.next_gen = []
 			
 		
  
