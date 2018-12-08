@@ -1,0 +1,413 @@
+How many values? (10 - 27): 10
+0
+(10, 50, <function dynamic_of at 0x0000013CEE75E488>, False)
+Generation: 0
+Population Size: 50
+String Size: 10
+Mutation Rate: 1000
+Total Fitness: 2044
+Average Fitness: 40.88
+################################################
+Generation: 200
+Population Size: 50
+String Size: 10
+Mutation Rate: 1000
+Total Fitness: 2076
+Average Fitness: 41.52
+################################################
+Result 18 corresponds to: x = None s = ['0', '0', '0', '1', '0', '0', '0', '0', '0', '0']
+Did  200  iterations
+[18]
+Top result:
+18 ['0', '0', '0', '1', '0', '0', '0', '0', '0', '0']
+################################################################################################################################################
+How many values? (10 - 27): 11
+2
+(11, 50, <function dynamic_of at 0x000001F2528BF488>, False)
+Generation: 0
+Population Size: 50
+String Size: 11
+Mutation Rate: 1000
+Total Fitness: 2456
+Average Fitness: 49.12
+################################################
+Generation: 200
+Population Size: 50
+String Size: 11
+Mutation Rate: 1000
+Total Fitness: 2494
+Average Fitness: 49.88
+################################################
+Result 20 corresponds to: x = None s = ['0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0']
+Did  200  iterations
+[20]
+Top result:
+20 ['0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0']
+################################################################################################################################################
+How many values? (10 - 27): 12
+4
+(12, 50, <function dynamic_of at 0x000001A01D4BF488>, False)
+Generation: 0
+Population Size: 50
+String Size: 12
+Mutation Rate: 1000
+Total Fitness: 3004
+Average Fitness: 60.08
+################################################
+Generation: 200
+Population Size: 50
+String Size: 12
+Mutation Rate: 1000
+Total Fitness: 3008
+Average Fitness: 60.16
+################################################
+Result 22 corresponds to: x = None s = ['0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0']
+Did  200  iterations
+[22]
+Top result:
+22 ['0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0']
+################################################################################################################################################
+How many values? (10 - 27): 13
+6
+(13, 50, <function dynamic_of at 0x000002D1981DF488>, False)
+Generation: 0
+Population Size: 50
+String Size: 13
+Mutation Rate: 1000
+Total Fitness: 3560
+Average Fitness: 71.2
+################################################
+Generation: 200
+Population Size: 50
+String Size: 13
+Mutation Rate: 1000
+Total Fitness: 3620
+Average Fitness: 72.4
+################################################
+Result 24 corresponds to: x = None s = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1']
+Did  200  iterations
+[24]
+Top result:
+24 ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1']
+################################################################################################################################################
+How many values? (10 - 27): 14
+8
+(14, 50, <function dynamic_of at 0x000001D54D6EF488>, False)
+Generation: 0
+Population Size: 50
+String Size: 14
+Mutation Rate: 1000
+Total Fitness: 4280
+Average Fitness: 85.6
+################################################
+Generation: 200
+Population Size: 50
+String Size: 14
+Mutation Rate: 1000
+Total Fitness: 4396
+Average Fitness: 87.92
+################################################
+Result 26 corresponds to: x = None s = ['0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0']
+Did  200  iterations
+[26]
+Top result:
+26 ['0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '1', '0', '0', '0']
+################################################################################################################################################
+How many values? (10 - 27): 15
+10
+(15, 50, <function dynamic_of at 0x0000022EB301F488>, False)
+Generation: 0
+Population Size: 50
+String Size: 15
+Mutation Rate: 1000
+Total Fitness: 4858
+Average Fitness: 97.16
+################################################
+Generation: 300
+Population Size: 50
+String Size: 15
+Mutation Rate: 1000
+Total Fitness: 4948
+Average Fitness: 98.96
+################################################
+Result 28 corresponds to: x = None s = ['0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']
+Did  300  iterations
+[28]
+Top result:
+28 ['0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']
+################################################################################################################################################
+How many values? (10 - 27): 16
+12
+(16, 50, <function dynamic_of at 0x000001B8D469F488>, False)
+Generation: 0
+Population Size: 50
+String Size: 16
+Mutation Rate: 1000
+Total Fitness: 5414
+Average Fitness: 108.28
+################################################
+Generation: 200
+Population Size: 50
+String Size: 16
+Mutation Rate: 1000
+Total Fitness: 5610
+Average Fitness: 112.2
+################################################
+Result 30 corresponds to: x = None s = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0']
+Did  200  iterations
+[30]
+Top result:
+30 ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0']
+################################################################################################################################################
+How many values? (10 - 27): 17
+14
+(17, 50, <function dynamic_of at 0x00000183B011E488>, False)
+Generation: 0
+Population Size: 50
+String Size: 17
+Mutation Rate: 1000
+Total Fitness: 6404
+Average Fitness: 128.08
+################################################
+Generation: 200
+Population Size: 50
+String Size: 17
+Mutation Rate: 1000
+Total Fitness: 6256
+Average Fitness: 125.12
+################################################
+Result 60 corresponds to: x = None s = ['1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '1', '0', '1', '1', '1', '1', '1']
+Did  200  iterations
+[60]
+Top result:
+60 ['1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '1', '0', '1', '1', '1', '1', '1']
+################################################################################################################################################
+How many values? (10 - 27): 18
+16
+(18, 50, <function dynamic_of at 0x000001C5455BE488>, False)
+Generation: 0
+Population Size: 50
+String Size: 18
+Mutation Rate: 1000
+Total Fitness: 7230
+Average Fitness: 144.6
+################################################
+Generation: 200
+Population Size: 50
+String Size: 18
+Mutation Rate: 1000
+Total Fitness: 7302
+Average Fitness: 146.04
+################################################
+Result 64 corresponds to: x = None s = ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '1', '0', '1', '1', '1', '1', '1']
+Did  200  iterations
+[64]
+Top result:
+64 ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '1', '0', '1', '1', '1', '1', '1']
+################################################################################################################################################
+How many values? (10 - 27): 19
+18
+(19, 50, <function dynamic_of at 0x000002C391A5F488>, False)
+Generation: 0
+Population Size: 50
+String Size: 19
+Mutation Rate: 1000
+Total Fitness: 7946
+Average Fitness: 158.92
+################################################
+Generation: 200
+Population Size: 50
+String Size: 19
+Mutation Rate: 1000
+Total Fitness: 8246
+Average Fitness: 164.92
+################################################
+Result 36 corresponds to: x = None s = ['0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']
+Did  200  iterations
+[36]
+Top result:
+36 ['0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0']
+################################################################################################################################################
+How many values? (10 - 27): 20
+20
+(20, 50, <function dynamic_of at 0x000001B63A03E488>, False)
+Generation: 0
+Population Size: 50
+String Size: 20
+Mutation Rate: 1000
+Total Fitness: 9042
+Average Fitness: 180.84
+################################################
+Generation: 200
+Population Size: 50
+String Size: 20
+Mutation Rate: 1000
+Total Fitness: 9188
+Average Fitness: 183.76
+################################################
+Result 72 corresponds to: x = None s = ['0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0']
+Did  200  iterations
+[72]
+Top result:
+72 ['0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0']
+################################################################################################################################################
+How many values? (10 - 27): 21
+22
+(21, 50, <function dynamic_of at 0x000002BFB378F488>, False)
+Generation: 0
+Population Size: 50
+String Size: 21
+Mutation Rate: 1000
+Total Fitness: 10064
+Average Fitness: 201.28
+################################################
+Generation: 200
+Population Size: 50
+String Size: 21
+Mutation Rate: 1000
+Total Fitness: 9792
+Average Fitness: 195.84
+################################################
+Result 40 corresponds to: x = None s = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0']
+Did  200  iterations
+[40]
+Top result:
+40 ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0']
+################################################################################################################################################
+How many values? (10 - 27): 22
+24
+(22, 50, <function dynamic_of at 0x000002279DB3E488>, False)
+Generation: 0
+Population Size: 50
+String Size: 22
+Mutation Rate: 1000
+Total Fitness: 10912
+Average Fitness: 218.24
+################################################
+Generation: 300
+Population Size: 50
+String Size: 22
+Mutation Rate: 1000
+Total Fitness: 10908
+Average Fitness: 218.16
+################################################
+Result 114 corresponds to: x = None s = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0', '0', '1', '0']
+Did  300  iterations
+[114]
+Top result:
+114 ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '1', '0', '1', '0', '0', '0', '1', '0']
+################################################################################################################################################
+How many values? (10 - 27): 23
+26
+(23, 50, <function dynamic_of at 0x00000143A83EF488>, False)
+Generation: 0
+Population Size: 50
+String Size: 23
+Mutation Rate: 1000
+Total Fitness: 12320
+Average Fitness: 246.4
+################################################
+Generation: 200
+Population Size: 50
+String Size: 23
+Mutation Rate: 1000
+Total Fitness: 12220
+Average Fitness: 244.4
+################################################
+Result 152 corresponds to: x = None s = ['1', '1', '1', '1', '1', '0', '1', '0', '1', '1', '1', '1', '0', '1', '1', '1', '1', '1', '0', '1', '1', '1', '1']
+Did  200  iterations
+[152]
+Top result:
+152 ['1', '1', '1', '1', '1', '0', '1', '0', '1', '1', '1', '1', '0', '1', '1', '1', '1', '1', '0', '1', '1', '1', '1']
+################################################################################################################################################
+How many values? (10 - 27): 24
+28
+(24, 50, <function dynamic_of at 0x000001B5A392F488>, False)
+Generation: 0
+Population Size: 50
+String Size: 24
+Mutation Rate: 1000
+Total Fitness: 13280
+Average Fitness: 265.6
+################################################
+Generation: 200
+Population Size: 50
+String Size: 24
+Mutation Rate: 1000
+Total Fitness: 13128
+Average Fitness: 262.56
+################################################
+Result 160 corresponds to: x = None s = ['0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '1', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0']
+Did  200  iterations
+[160]
+Top result:
+160 ['0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '1', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0']
+################################################################################################################################################
+How many values? (10 - 27): 25
+30
+(25, 50, <function dynamic_of at 0x00000225BCA8F488>, False)
+Generation: 0
+Population Size: 50
+String Size: 25
+Mutation Rate: 1000
+Total Fitness: 14532
+Average Fitness: 290.64
+################################################
+Generation: 200
+Population Size: 50
+String Size: 25
+Mutation Rate: 1000
+Total Fitness: 14648
+Average Fitness: 292.96
+################################################
+Result 132 corresponds to: x = None s = ['0', '0', '0', '0', '0', '0', '0', '1', '1', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0']
+Did  200  iterations
+[132]
+Top result:
+132 ['0', '0', '0', '0', '0', '0', '0', '1', '1', '0', '0', '0', '0', '0', '0', '0', '1', '0', '0', '0', '0', '0', '0', '0', '0']
+################################################################################################################################################
+How many values? (10 - 27): 26
+32
+(26, 50, <function dynamic_of at 0x000002331C91F488>, False)
+Generation: 0
+Population Size: 50
+String Size: 26
+Mutation Rate: 1000
+Total Fitness: 15756
+Average Fitness: 315.12
+################################################
+Generation: 200
+Population Size: 50
+String Size: 26
+Mutation Rate: 1000
+Total Fitness: 15400
+Average Fitness: 308.0
+################################################
+Result 210 corresponds to: x = None s = ['1', '1', '1', '1', '1', '0', '1', '1', '1', '0', '0', '1', '1', '1', '0', '1', '1', '1', '1', '1', '1', '0', '1', '1', '1', '1']
+Did  200  iterations
+[210]
+Top result:
+210 ['1', '1', '1', '1', '1', '0', '1', '1', '1', '0', '0', '1', '1', '1', '0', '1', '1', '1', '1', '1', '1', '0', '1', '1', '1', '1']
+################################################################################################################################################
+How many values? (10 - 27): 27
+34
+(27, 50, <function dynamic_of at 0x000001415F08E488>, False)
+Generation: 0
+Population Size: 50
+String Size: 27
+Mutation Rate: 1000
+Total Fitness: 16842
+Average Fitness: 336.84
+################################################
+Generation: 200
+Population Size: 50
+String Size: 27
+Mutation Rate: 1000
+Total Fitness: 16620
+Average Fitness: 332.4
+################################################
+Result 184 corresponds to: x = None s = ['1', '1', '1', '1', '1', '1', '0', '1', '1', '1', '1', '0', '1', '1', '1', '1', '1', '0', '1', '1', '1', '1', '1', '1', '0', '1', '1']
+Did  200  iterations
+[184]
+Top result:
+184 ['1', '1', '1', '1', '1', '1', '0', '1', '1', '1', '1', '0', '1', '1', '1', '1', '1', '0', '1', '1', '1', '1', '1', '1', '0', '1', '1']
